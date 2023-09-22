@@ -1,0 +1,12 @@
+# .gitignore
+
+# Ignore Python virtual environment
+virtual_env/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# If you are using Jupyter notebooks, you might want to ignore checkpoint files
+.ipynb_checkpoints/
