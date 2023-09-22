@@ -1,0 +1,13 @@
+---
+- name: Clone from template
+  community.vmware.vmware_guest:
+    hostname: vcsa.kingfamilyaz.com
+    username: 'your_username'
+    password: 'your_password'
+    validate_certs: true
+    template: ubuntu_template_name
+    name: my_ubuntu_vm
+    datacenter: your_datacenter_name
+    folder: /path_to_folder_in_datacenter
+    state: poweredon
+    wait_for_ip_address: true

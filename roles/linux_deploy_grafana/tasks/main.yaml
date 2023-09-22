@@ -1,0 +1,12 @@
+---
+# Deploy Grafana
+- name: Run Grafana container
+  community.docker.docker_container:
+    name: grafana
+    image: grafana/grafana:latest
+    state: started
+    ports:
+      - "3000:3000"
+    env:
+      GF_SECURITY_ADMIN_USER: "{{ grafana_admin }}"
+      GF_SECURITY_ADMIN_PASSWORD: "{{ grafana_password }}"

@@ -1,0 +1,78 @@
+---
+
+- name: Gather VM Facts
+  community.vmware.vmware_about_info:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: false
+  delegate_to: localhost
+  connection: local
+  register: vcenter_facts
+
+- name: Get Datastores
+  community.vmware.vmware_datastore_info:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: false
+  delegate_to: localhost
+  connection: local
+  register: datastores
+
+- name: Get Folders
+  community.vmware.vmware_folder_info:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    datacenter: "{{ vcenter_datacenter }}"
+    validate_certs: false
+  delegate_to: localhost
+  connection: local
+  register: folders
+
+- name: Get Clusters
+  community.vmware.vmware_cluster_info:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    datacenter: "{{ vcenter_datacenter }}"
+    validate_certs: false
+  delegate_to: localhost
+  connection: local
+  register: clusters
+
+- name: Get all VMs in vCenter
+  community.vmware.vmware_vm_info:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: false
+  delegate_to: localhost
+  connection: local
+  register: all_vms
+
+- name: Get Networks
+  community.vmware.vmware_vmkernel_info:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    cluster_name: "{{ vcenter_cluster }}"
+    validate_certs: false
+  delegate_to: localhost
+  connection: local
+  register: networks
+
+- name: Combine and Write All Facts to vcsa_facts
+  ansible.builtin.copy:
+    dest: "/Users/davidking/Documents/developer/IaC_VM/output/vcsa_facts.yml"
+    content: |
+      vcenter_facts: {{ vcenter_facts | to_nice_yaml }}
+      datastores: {{ datastores | to_nice_yaml }}
+      folders: {{ folders | to_nice_yaml }}
+      clusters: {{ clusters | to_nice_yaml }}
+      all_vms: {{ all_vms | to_nice_yaml }}
+      networks: {{ networks | to_nice_yaml }}
+    mode: '0644'
+  delegate_to: localhost
+  connection: local

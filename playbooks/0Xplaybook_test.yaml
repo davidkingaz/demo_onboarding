@@ -1,0 +1,10 @@
+---
+- name: Convert RAWDATA to HOST_VARS directory following argument specs
+  hosts: AristaSwitch
+  gather_facts: true
+  connection: local
+
+  roles:
+    - github_device_input
+    - github_create_clean_host_file
+    # - github_create_host_vars_file

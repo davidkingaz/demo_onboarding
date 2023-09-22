@@ -1,0 +1,13 @@
+---
+vcenter_hostname: "vcsa.kingfamilyaz.com"
+vcenter_username: "administrator@kingfamilyaz.com"
+vcenter_password: "Ze44elin!"
+vcenter_datacenter: "Datacenter"
+vcenter_folder: "AnsibleVMs"
+vcenter_cluster: "KingCluster"
+
+network:
+  vcenter_network: "KingLAN"
+disk:
+  vcenter_diskprov_type: "thin"
+  vcenter_datastore: "KingNAS"

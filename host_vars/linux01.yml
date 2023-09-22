@@ -1,0 +1,30 @@
+---
+# Common Virtual Machine Attributes
+vm_name: "Linux01"
+os: "ubuntu"
+cpu_count: 2
+memory_size_gb: 4
+disk_size_gb: 40
+ansible_host: 192.168.4.116
+ansible_user: "adminuser"
+ansible_password: "adminpassword"
+ansible_ssh_pass: "adminpassword"
+ansible_become: true
+ansible_become_method: "sudo"
+ansible_become_user: "root"
+ansible_become_pass: "adminpassword"
+
+# VMware vCenter specific attributes
+vcenter_datastore: "datastore1"
+vcenter_folder: "/Datacenters/dc1/vm"
+vcenter_cluster: "Cluster1"
+vcenter_template: "Linux"
+vcenter_network: "VM Network"  # This should be a Port Group set up for DHCP
+
+# Azure specific attributes
+azure_vm_size: "Standard_DS1_v2"
+azure_image:
+  publisher: "Canonical"
+  offer: "UbuntuServer"
+  sku: "18.04-LTS"
+  version: "latest"

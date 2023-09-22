@@ -1,0 +1,12 @@
+---
+- name: Deploying the Monitoring Applications
+  hosts: linux01
+  gather_facts: false
+
+  roles:
+    - linux_deploy_docker
+    - linux_deploy_prometheus
+    - linux_config_prometheus
+    - linux_deploy_grafana
+    - linux_connect_grafana_prometheus
+    - linux_config_grafana

@@ -1,0 +1,8 @@
+---
+
+- name: Gather VM Facts from vCenter
+  hosts: vcsa
+  gather_facts: false
+
+  roles:
+    - vmware_get_facts

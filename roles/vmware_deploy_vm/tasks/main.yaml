@@ -1,0 +1,25 @@
+---
+- name: Deploy Virtual Machine
+  community.vmware.vmware_guest:
+    hostname: vcsa.kingfamilyaz.com
+    username: 'your_username'
+    password: 'your_password'
+    validate_certs: true
+    folder: /path_to_folder_in_datacenter
+    name: my_ubuntu_vm
+    state: poweredon
+    guest_id: ubuntu64Guest
+    disk:
+      - size_gb: 10
+        type: thin
+        datastore: your_datastore_name
+    hardware:
+      memory_mb: 2048
+      num_cpus: 2
+      scsi: paravirtual
+    networks:
+      - name: VM Network
+        ip: your_vm_ip
+        netmask: 255.255.255.0
+        gateway: your_gateway
+    wait_for_ip_address: true

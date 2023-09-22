@@ -1,0 +1,7 @@
+---
+collections:
+  - name: netbox.netbox
+    version: 3.14.0
+  - name: arista.eos
+  - name: cisco.ios
+  - name: community.vmware

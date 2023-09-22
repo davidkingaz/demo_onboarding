@@ -1,0 +1,27 @@
+---
+# Deploy Applications onto Linux Virtual Machine
+- name: Install required packages
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+    state: "{{ installed_state }}"
+
+- name: Add Docker repository GPG key
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: "{{ installed_state }}"
+
+- name: Add Docker repository
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+    state: "{{ installed_state }}"
+
+# Deploy Docker
+- name: Install Docker
+  ansible.builtin.apt:
+    name: docker-ce
+    state: "{{ installed_state }}"
+    update_cache: true
