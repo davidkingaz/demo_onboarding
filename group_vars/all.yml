@@ -13,9 +13,6 @@ ansible_password: "ansible"
 grafana_admin: "adminuser"
 grafana_password: "adminpassword"
 
-# SCM token:
-scm_token: "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"
-
 sites:
   - name: "NYC"
     time_zone: America/New_York
